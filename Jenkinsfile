@@ -44,7 +44,7 @@ pipeline {
     
     post {
         always {
-            junit testResultsPattern: 'results/*_result.xml', allowEmptyResults: true
+            junit testResults: 'results/*_result.xml', allowEmptyResults: true
             
             script {
                 if (fileExists('results/*api*_result.xml')) {
