@@ -72,17 +72,30 @@ deploy-stage:
 	docker run -d --rm --name calc-web -p 80:80 calc-web
 
 # Nuevos targets para la práctica
+#test-api:
+#	@echo "🌐 Running API tests..."
+#	@mkdir -p results
+#	@echo "<?xml version='1.0' encoding='UTF-8'?>" > results/api_test_result.xml
+#	@echo "<testsuite name='api-tests' tests='4' failures='0' errors='0' time='2.1'>" >> results/api_test_result.xml
+#	@echo "<testcase name='test_api_connection' classname='TestAPI' time='0.8'></testcase>" >> results/api_test_result.xml
+#	@echo "<testcase name='test_api_response_format' classname='TestAPI' time='0.5'></testcase>" >> results/api_test_result.xml
+#	@echo "<testcase name='test_api_create_post' classname='TestAPI' time='0.6'></testcase>" >> results/api_test_result.xml
+#	@echo "<testcase name='test_response_time' classname='TestAPIPerformance' time='0.2'></testcase>" >> results/api_test_result.xml
+#	@echo "</testsuite>" >> results/api_test_result.xml
+#	@echo "✅ API tests completed: 4 tests passed"
+
 test-api:
 	@echo "🌐 Running API tests..."
 	@mkdir -p results
 	@echo "<?xml version='1.0' encoding='UTF-8'?>" > results/api_test_result.xml
-	@echo "<testsuite name='api-tests' tests='4' failures='0' errors='0' time='2.1'>" >> results/api_test_result.xml
-	@echo "<testcase name='test_api_connection' classname='TestAPI' time='0.8'></testcase>" >> results/api_test_result.xml
+	@echo "<testsuite name='api-tests' tests='4' failures='1' errors='0' time='2.1'>" >> results/api_test_result.xml
+	@echo "<testcase name='test_api_connection' classname='TestAPI' time='0.8'><failure>Simulated failure for email testing</failure></testcase>" >> results/api_test_result.xml
 	@echo "<testcase name='test_api_response_format' classname='TestAPI' time='0.5'></testcase>" >> results/api_test_result.xml
 	@echo "<testcase name='test_api_create_post' classname='TestAPI' time='0.6'></testcase>" >> results/api_test_result.xml
 	@echo "<testcase name='test_response_time' classname='TestAPIPerformance' time='0.2'></testcase>" >> results/api_test_result.xml
 	@echo "</testsuite>" >> results/api_test_result.xml
-	@echo "✅ API tests completed: 4 tests passed"
+	@echo "❌ API tests failed: 1 test failed"
+	@exit 1
 
 test-e2e:
 	@echo "🎯 Running E2E tests..."
